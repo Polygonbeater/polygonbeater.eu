@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://polygonbeater.eu/sitemap.xml

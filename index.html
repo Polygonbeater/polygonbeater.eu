@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polygon Beater — 3D Graphic Studio</title>
+
+<!-- SEO Meta Tagy -->
+<meta name="description" content="Polygon Beater — 3D Graphic Studio. 3D modeling, product visualization, Web3D applications, and animations for games and e-commerce.">
+<meta name="keywords" content="3D graphic studio, 3D modeling, product visualization, Verge3D, Blender, game assets, 3D render, WebGL">
+<meta name="author" content="Vítězslav Koneval">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Náhledy pro sociální sítě -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://polygonbeater.eu/">
+<meta property="og:title" content="Polygon Beater — 3D Graphic Studio">
+<meta property="og:description" content="From concept to 8,000 polygons of precision. Professional 3D modeling, product renders, and interactive Web3D configurators.">
+<meta property="og:image" content="https://polygonbeater.eu/Logo_Text_B.jpg">
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://polygonbeater.eu/">
+<meta name="twitter:title" content="Polygon Beater — 3D Graphic Studio">
+<meta name="twitter:description" content="Professional 3D modeling, product renders, and interactive Web3D configurators.">
+<meta name="twitter:image" content="https://polygonbeater.eu/Logo_Text_B.jpg">
+
+<!-- Favicona -->
+<link rel="icon" type="image/svg+xml" href="Logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red-900:#7A0E12;
+    --red-700:#9C1319;
+    --red-500:#C21A20;
+    --ink-950:#0B0B0C;
+    --ink-800:#17171A;
+    --ink-700:#232326;
+    --paper-050:#F3F1EC;
+    --paper-100:#E9E4D9;
+    --steel-500:#8A8781;
+    --steel-300:#B7B4AC;
+    --white:#FFFFFF;
+
+    --display: 'Big Shoulders Display', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+
+    --edge: 1px solid rgba(255,255,255,0.10);
+    --edge-dark: 1px solid rgba(11,11,12,0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper-050);
+    color:var(--ink-950);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  section{position:relative;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--red-500);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--red-500);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:900;
+    letter-spacing:-0.01em;
+    line-height:0.94;
+    text-transform:uppercase;
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--red-500);
+    outline-offset:3px;
+  }
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(11,11,12,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:var(--edge);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:6px;
+    overflow:hidden; background:var(--white);
+    flex-shrink:0;
+  }
+  .brand-mark img{width:100%; height:100%; object-fit:cover;}
+  .brand-word{color:var(--white); line-height:1.05;}
+  .brand-word .name{
+    font-family:var(--display); font-weight:900; font-size:19px;
+    letter-spacing:0.01em; text-transform:uppercase;
+  }
+  .brand-word .sub{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
+    color:var(--red-500); text-transform:uppercase;
+  }
+  nav.links{display:flex; align-items:center; gap:24px;}
+  nav.links a{
+    color:var(--steel-300); font-family:var(--mono); font-size:13px;
+    letter-spacing:0.03em; text-transform:uppercase;
+    position:relative; padding:4px 0;
+    transition:color .2s ease;
+  }
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--red-500);
+    transition:width .25s ease;
+  }
+  nav.links a:hover{color:var(--white);}
+  nav.links a:hover::after{width:100%;}
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lang-switcher {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--steel-300);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: var(--ink-800);
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    color: var(--steel-500);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    transition: color .2s ease;
+  }
+  .lang-btn.active {
+    color: var(--red-500);
+  }
+  .lang-btn:hover {
+    color: var(--white);
+  }
+
+  .nav-cta{
+    font-family:var(--mono); font-size:12px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-950);
+    background:var(--red-500); padding:11px 20px;
+    border:1px solid var(--red-500);
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:transparent; color:var(--white); transform:translateY(-1px);}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .burger span{width:22px; height:2px; background:var(--white); display:block;}
+
+  @media (max-width:960px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .nav-cta{display:none;}
+  }
+
+  .hero{
+    background:var(--ink-950);
+    color:var(--white);
+    padding:96px 0 80px;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size:44px 44px;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(44px, 6vw, 84px);
+    margin:18px 0 24px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--red-500);
+  }
+  .hero p.lead{
+    font-family:var(--body); font-size:17px; color:var(--steel-300);
+    max-width:480px; margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--red-500); color:var(--ink-950); padding:16px 26px;
+    border:1px solid var(--red-500);
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background:var(--red-700); color:var(--white); transform:translateY(-1px);}
+
+  .cube-stage{
+    height:420px; display:flex; align-items:center; justify-content:center;
+    perspective:900px;
+  }
+  .cube{
+    width:180px; height:180px; position:relative;
+    transform-style:preserve-3d;
+    animation:spin 18s linear infinite;
+  }
+  .cube .face{
+    position:absolute; width:180px; height:180px;
+    border:1px solid var(--red-500);
+    background:rgba(122,14,18,0.16);
+  }
+  .cube .face.dots{
+    background-image:radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size:18px 18px;
+    background-position:center;
+  }
+  .face.front{ transform:translateZ(90px); }
+  .face.back{ transform:translateZ(-90px) rotateY(180deg); }
+  .face.right{ transform:rotateY(90deg) translateZ(90px); }
+  .face.left{ transform:rotateY(-90deg) translateZ(90px); }
+  .face.top{ transform:rotateX(90deg) translateZ(90px); }
+  .face.bottom{ transform:rotateX(-90deg) translateZ(90px); }
+  @keyframes spin{
+    from{ transform:rotateX(-18deg) rotateY(0deg); }
+    to{ transform:rotateX(-18deg) rotateY(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cube{animation:none; transform:rotateX(-18deg) rotateY(-28deg);}
+    html{scroll-behavior:auto;}
+  }
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .cube-stage{height:280px;}
+    .cube, .cube .face{width:130px; height:130px;}
+    .face.front{transform:translateZ(65px);}
+    .face.back{transform:translateZ(-65px) rotateY(180deg);}
+    .face.right{transform:rotateY(90deg) translateZ(65px);}
+    .face.left{transform:rotateY(-90deg) translateZ(65px);}
+    .face.top{transform:rotateX(90deg) translateZ(65px);}
+    .face.bottom{transform:rotateX(-90deg) translateZ(65px);}
+  }
+
+  .sec-head{max-width:640px; margin-bottom:52px;}
+  .sec-head h2{font-size:clamp(30px,4vw,46px); margin-top:14px;}
+  .sec-head p{color:var(--steel-500); margin-top:14px; font-size:15.5px; max-width:520px;}
+  section.on-light .sec-head p{color:#5B584F;}
+
+  .services{padding:100px 0; background:var(--paper-050);}
+  .service-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(11,11,12,0.12); border:var(--edge-dark);
+  }
+  .service-card{
+    background:var(--paper-050); padding:34px 30px; min-height:210px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--white);}
+  .service-card .num{font-family:var(--mono); font-size:12px; color:var(--red-500);}
+  .service-card h3{
+    font-size:23px; margin-top:26px; text-transform:none; font-weight:700; letter-spacing:0;
+    font-family:var(--body);
+  }
+  .service-card p{font-size:14px; color:var(--steel-500); margin-top:10px;}
+  @media (max-width:860px){ .service-grid{grid-template-columns:1fr;} }
+
+  .projects {
+    padding: 100px 0;
+    background: var(--ink-800);
+    color: var(--white);
+    border-top: var(--edge);
+    border-bottom: var(--edge);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--ink-950);
+    border: var(--edge);
+    padding: 32px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color .2s ease;
+  }
+  .project-card:hover {
+    border-color: var(--red-500);
+  }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--red-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .project-card h3 {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .project-card p {
+    color: var(--steel-300);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .sec-head p a.inline-link {
+    color: var(--white);
+    text-decoration: underline;
+    transition: color .2s ease;
+  }
+  .sec-head p a.inline-link:hover {
+    color: var(--red-500);
+  }
+  @media (max-width: 860px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  .process{padding:100px 0; background:var(--ink-950); color:var(--white);}
+  .process .sec-head p{color:var(--steel-300);}
+  .steps{border-top:var(--edge);}
+  .step{
+    display:grid; grid-template-columns:90px 1fr 1.2fr; gap:24px;
+    padding:26px 0; border-bottom:var(--edge); align-items:baseline;
+  }
+  .step .step-num{font-family:var(--mono); font-size:14px; color:var(--red-500);}
+  .step h3{
+    font-family:var(--display); font-weight:700; text-transform:uppercase;
+    font-size:22px; letter-spacing:0;
+  }
+  .step p{color:var(--steel-300); font-size:14.5px;}
+  @media (max-width:760px){
+    .step{grid-template-columns:50px 1fr; grid-template-rows:auto auto;}
+    .step p{grid-column:2; }
+  }
+
+  .spec{padding:100px 0; background:var(--white); border-top:var(--edge-dark); border-bottom:var(--edge-dark);}
+  .spec-wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;}
+  .spec-panel{
+    border:1px solid var(--ink-950); padding:30px; position:relative;
+  }
+  .spec-panel::before,.spec-panel::after,
+  .spec-panel .c2::before,.spec-panel .c2::after{
+    content:""; position:absolute; width:14px; height:14px;
+    border:2px solid var(--red-500);
+  }
+  .spec-panel::before{ top:-2px; left:-2px; border-right:none; border-bottom:none; }
+  .spec-panel::after{ top:-2px; right:-2px; border-left:none; border-bottom:none; }
+  .spec-panel .c2::before{ bottom:-2px; left:-2px; border-right:none; border-top:none; }
+  .spec-panel .c2::after{ bottom:-2px; right:-2px; border-left:none; border-top:none; }
+  .spec-title{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; color:var(--red-500); text-transform:uppercase; margin-bottom:18px;}
+  .spec-row{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 0; border-bottom:1px dashed rgba(11,11,12,0.18);
+    font-family:var(--mono); font-size:13.5px;
+  }
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{color:var(--steel-500);}
+  .spec-row .v{text-align:right; font-weight:500;}
+
+  .custom-quotes {
+    padding: 100px 20px;
+    background: #E9E4D9;
+    color: #0B0B0C;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .custom-quotes-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .custom-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C21A20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .custom-eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: #C21A20;
+    display: inline-block;
+  }
+  .custom-sec-head {
+    max-width: 640px;
+    margin-bottom: 52px;
+  }
+  .custom-sec-head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 0.94;
+    text-transform: uppercase;
+    color: #0B0B0C;
+  }
+  .custom-quote-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(11, 11, 12, 0.15);
+    border: 1px solid rgba(11, 11, 12, 0.12);
+  }
+  @media (max-width: 760px) {
+    .custom-quote-grid { grid-template-columns: 1fr; }
+  }
+  .custom-quote-card {
+    background: #E9E4D9;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .custom-quote-card p.q {
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #0B0B0C;
+  }
+  .custom-quote-card .attr {
+    margin-top: 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #9C1319;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .contact{padding:100px 0 110px; background:var(--ink-950); color:var(--white);}
+  .contact-wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px;}
+  .contact-info p.lead{color:var(--steel-300); margin-top:14px; font-size:15.5px; max-width:400px;}
+  .contact-list{margin-top:36px; display:flex; flex-direction:column; gap:16px;}
+  .contact-list .row{display:flex; gap:14px; font-family:var(--mono); font-size:13.5px;}
+  .contact-list .k{color:var(--steel-500); min-width:78px;}
+  .contact-list .v a:hover{color:var(--red-500);}
+  .social-links a{color:var(--white); transition:color .2s ease;}
+  .social-links a:hover{color:var(--red-500);}
+
+  form{display:flex; flex-direction:column; gap:18px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  label{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--steel-300); margin-bottom:8px; display:block;
+  }
+  input, textarea, select{
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.25);
+    color:var(--white); font-family:var(--body); font-size:15px; padding:10px 2px;
+    transition:border-color .2s ease;
+  }
+  select option{color:#000; background:#FFF;}
+  input::placeholder, textarea::placeholder{color:var(--steel-500);}
+  input:focus, textarea:focus, select:focus{border-color:var(--red-500); outline:none;}
+  textarea{resize:vertical; min-height:96px;}
+  .submit-btn{
+    margin-top:8px; align-self:flex-start;
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--red-500); color:var(--ink-950); padding:16px 30px; border:1px solid var(--red-500);
+    cursor:pointer; font-weight:600; transition:background .2s ease, color .2s ease;
+  }
+  .submit-btn:hover{background:transparent; color:var(--white);}
+  #form-result{font-family:var(--mono); font-size:12px; margin-top:10px;}
+  
+  @media (max-width:760px){
+    .contact-wrap{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+  }
+
+  footer{background:var(--ink-950); border-top:var(--edge); padding:40px 0;}
+  .foot-wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .foot-wrap .brand-word .name{font-size:16px;}
+  footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-500); letter-spacing:0.04em;}
+  footer nav.links{gap:24px;}
+
+  .cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    max-width: 420px;
+    background: var(--ink-950);
+    border: 1px solid var(--red-500);
+    padding: 20px;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cookie-banner p {
+    font-family: var(--body);
+    font-size: 13px;
+    color: var(--steel-300);
+    line-height: 1.4;
+  }
+  .cookie-banner p a {
+    color: var(--white);
+    text-decoration: underline;
+  }
+  .cookie-banner p a:hover {
+    color: var(--red-500);
+  }
+  .cookie-btn {
+    align-self: flex-end;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--red-500);
+    color: var(--ink-950);
+    border: 1px solid var(--red-500);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background .2s ease, color .2s ease;
+  }
+  .cookie-btn:hover {
+    background: transparent;
+    color: var(--white);
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--ink-950);
+    color: var(--white);
+    border: 1px solid var(--red-500);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease, background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .back-to-top:hover {
+    background: var(--red-500);
+    color: var(--ink-950);
+    transform: translateY(-3px);
+  }
+  .back-to-top svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  @media (max-width: 480px) {
+    .cookie-banner { left: 10px; right: 10px; bottom: 10px; max-width: none; }
+    .back-to-top { bottom: 16px; right: 16px; width: 40px; height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><img src="logo.svg" alt="Polygon Beater logo"></span>
+      <span class="brand-word">
+        <span class="name">Polygon Beater</span><br>
+        <span class="sub">3D Graphic Studio</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#sluzby" data-lang-cs="Služby" data-lang-en="Services">Služby</a>
+      <a href="#realizace" data-lang-cs="Realizace" data-lang-en="Projects">Realizace</a>
+      <a href="#postup" data-lang-cs="Postup" data-lang-en="Process">Postup</a>
+      <a href="#specifikace" data-lang-cs="Specifikace" data-lang-en="Specs">Specifikace</a>
+      <a href="#reference-klientu" data-lang-cs="Reference" data-lang-en="Reviews">Reference</a>
+      <a href="#kontakt" data-lang-cs="Kontakt" data-lang-en="Contact">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-cs" onclick="switchLanguage('cs')">CZ</button>
+        <span>|</span>
+        <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">EN</button>
+      </div>
+      <a href="#kontakt" class="nav-cta" data-lang-cs="Poptávka" data-lang-en="Inquiry">Poptávka</a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('nav.links').style.display = document.querySelector('nav.links').style.display==='flex' ? 'none' : 'flex'; document.querySelector('nav.links').style.cssText+='flex-direction:column; position:absolute; top:76px; left:0; right:0; background:#0B0B0C; padding:20px 32px; gap:20px;'">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-lang-cs="Studio · Orlová, ČR" data-lang-en="Studio · Czech Republic">Studio · Orlová, ČR</div>
+      <h1 data-lang-cs="Z konceptu<br>na <em>osm tisíc</em><br>polygonů preciznosti." data-lang-en="From concept<br>to <em>eight thousand</em><br>polygons of precision.">Z konceptu<br>na <em>osm tisíc</em><br>polygonů preciznosti.</h1>
+      <p class="lead" data-lang-cs="Navrhujeme, modelujeme a renderujeme 3D grafiku pro produkty, hry a architekturu. Od prvního blockoutu po finální render dodáme vizuál, který obstojí v detailu." data-lang-en="We design, model, and render 3D graphics for products, games, and architecture. From the initial blockout to the final render, we deliver visuals that hold up in detail.">Navrhujeme, modelujeme a renderujeme 3D grafiku pro produkty, hry a architekturu. Od prvního blockoutu po finální render dodáme vizuál, který obstojí v detailu.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn-primary" data-lang-cs="Nezávazná poptávka" data-lang-en="Get a Quote">Nezávazná poptávka</a>
+      </div>
+    </div>
+    <div class="cube-stage">
+      <div class="cube" id="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right dots"></div>
+        <div class="face left dots"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services on-light" id="sluzby">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-lang-cs="Co děláme" data-lang-en="What We Do">Co děláme</div>
+      <h2 data-lang-cs="Naše služby" data-lang-en="Our Services">Naše služby</h2>
+      <p data-lang-cs="Každý projekt vedeme od konceptu po finální výstup v požadovaném formátu a rozlišení." data-lang-en="We guide every project from concept to final delivery in your required format and resolution.">Každý projekt vedeme od konceptu po finální výstup v požadovaném formátu a rozlišení.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="num">01</span>
+        <div>
+          <h3 data-lang-cs="3D modelování" data-lang-en="3D Modeling">3D modelování</h3>
+          <p data-lang-cs="Hard-surface i organické modely s čistou topologií, připravené na animaci i tisk." data-lang-en="Hard-surface and organic models with clean topology, ready for animation or printing.">Hard-surface i organické modely s čistou topologií, připravené na animaci i tisk.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="num">02</span>
+        <div>
+          <h3 data-lang-cs="Produktová vizualizace" data-lang-en="Product Visualization">Produktová vizualizace</h3>
+          <p data-lang-cs="Fotorealistické rendery produktů pro e-shopy, katalogy a reklamní kampaně." data-lang-en="Photorealistic product renders for e-commerce, catalogs, and ad campaigns.">Fotorealistické rendery produktů pro e-shopy, katalogy a reklamní kampaně.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="num">03</span>
+        <div>
+          <h3 data-lang-cs="Architektonická vizualizace" data-lang-en="Architectural Rendering">Architektonická vizualizace</h3>
+          <p data-lang-cs="Exteriéry i interiéry v denním i nočním osvětlení s přesnou atmosférou a světly." data-lang-en="Exteriors and interiors under day or night lighting with precise atmosphere.">Exteriéry i interiéry v denním i nočním osvětlení s přesnou atmosférou a světly.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="num">04</span>
+        <div>
+          <h3 data-lang-cs="Animace a rig" data-lang-en="Animation & Rigging">Animace a rig</h3>
+          <p data-lang-cs="Riggování postav a mechanismů, animace pro reklamu, hry i technické demo." data-lang-en="Character and mechanical rigging, animation for ads, games, or tech demos.">Riggování postav a mechanismů, animace pro reklamu, hry i technické demo.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="num">05</span>
+        <div>
+          <h3 data-lang-cs="Herní assety" data-lang-en="Game Assets">Herní assety</h3>
+          <p data-lang-cs="Optimalizované modely a textury pro Unreal Engine a Unity s PBR podklady." data-lang-en="Optimized models and textures for Unreal Engine and Unity with PBR materials.">Optimalizované modely a textury pro Unreal Engine a Unity s PBR podklady.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="num">06</span>
+        <div>
+          <h3 data-lang-cs="Texturing & shading" data-lang-en="Texturing & Shading">Texturing & shading</h3>
+          <p data-lang-cs="PBR textury a materiály stavěné pro konkrétní render engine a světelné scénáře." data-lang-en="PBR textures and materials crafted for specific render engines and light setups.">PBR textury a materiály stavěné pro konkrétní render engine a světelné scénáře.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="realizace">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-lang-cs="Mezinárodní spolupráce" data-lang-en="Global Collaborations">Mezinárodní spolupráce</div>
+      <h2 data-lang-cs="Vybrané realizované projekty" data-lang-en="Featured Projects">Vybrané realizované projekty</h2>
+      <p data-lang-cs="Ukázka projektů z platformy <a href='https://www.freelancer.com/u/Koneval?frm=Koneval&sb=t' target='_blank' class='inline-link'>Freelancer.com</a> a dlouhodobých zahraničních partnerství." data-lang-en="A selection of projects from <a href='https://www.freelancer.com/u/Koneval?frm=Koneval&sb=t' target='_blank' class='inline-link'>Freelancer.com</a> and international partnerships.">Ukázka projektů z platformy <a href="https://www.freelancer.com/u/Koneval?frm=Koneval&sb=t" target="_blank" class="inline-link">Freelancer.com</a> a dlouhodobých zahraničních partnerství.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div>
+          <span class="project-tag">USA · Web3D Configurator</span>
+          <h3>Maintainer Corporation of Iowa</h3>
+          <p data-lang-cs="Vývoj a programování interaktivního 3D webového konfigurátoru úložných prostorů a nástaveb užitkových vozidel na míru přímo v prohlížeči." data-lang-en="Development and programming of an interactive 3D web configurator for custom utility vehicle bodies directly in the browser.">Vývoj a programování interaktivního 3D webového konfigurátoru úložných prostorů a nástaveb užitkových vozidel na míru přímo v prohlížeči.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div>
+          <span class="project-tag">France · Motion & Animation</span>
+          <h3>Producement / Parisian Studio</h3>
+          <p data-lang-cs="Tvorba kompletních 3D modelů, textur a navazujících animací pro promo a vysvětlující (explainer) videa francouzského studia." data-lang-en="Creation of full 3D models, textures, and animations for promotional and explainer videos for a French studio.">Tvorba kompletních 3D modelů, textur a navazujících animací pro promo a vysvětlující (explainer) videa francouzského studia.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div>
+          <span class="project-tag">Germany / CZ · E-Commerce & Visualization</span>
+          <h3>Nero Food</h3>
+          <p data-lang-cs="Kompletní 3D produktové vizualizace, design obalů a etiket, infografické dlaždice pro Amazon a reklamní videosekvence doplňků stravy (Vitamin B1, Reishi, MSM, Chaga)." data-lang-en="3D product renders, package design, Amazon infographic tiles, and promotional video sequences for dietary supplements (Vitamin B1, Reishi, MSM, Chaga).">Kompletní 3D produktové vizualizace, design obalů a etiket, infografické dlaždice pro Amazon a reklamní videosekvence doplňků stravy (Vitamin B1, Reishi, MSM, Chaga).</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div>
+          <span class="project-tag">EU / USA · WebGL Application</span>
+          <h3>Interactive 3D Web Apps</h3>
+          <p data-lang-cs="Implementace Verge3D aplikací do webových prezentací pro přímé prohlížení a konfiguraci 3D produktů bez nutnosti instalace zásuvných modulů." data-lang-en="Implementation of Verge3D applications into websites for direct 3D product viewing and configuration without plugins.">Implementace Verge3D aplikací do webových prezentací pro přímé prohlížení a konfiguraci 3D produktů bez nutnosti instalace zásuvných modulů.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="postup">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-lang-cs="Jak pracujeme" data-lang-en="Workflow">Jak pracujeme</div>
+      <h2 data-lang-cs="Postup zakázky" data-lang-en="Project Process">Postup zakázky</h2>
+      <p data-lang-cs="Šest kroků, kterými prochází každý projekt — od prvního briefu po dodání finálních souborů." data-lang-en="Six steps every project undergoes — from initial brief to final delivery.">Šest kroků, kterými prochází každý projekt — od prvního briefu po dodání finálních souborů.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01 /06</span>
+        <h3 data-lang-cs="Brief" data-lang-en="Brief">Brief</h3>
+        <p data-lang-cs="Probereme cíl, reference a technické parametry výstupu." data-lang-en="We discuss goals, references, and technical specifications.">Probereme cíl, reference a technické parametry výstupu.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02 /06</span>
+        <h3 data-lang-cs="Blockout" data-lang-en="Blockout">Blockout</h3>
+        <p data-lang-cs="Hrubá kompozice scény a proporce — schvalujeme dřív, než jdeme do detailu." data-lang-en="Rough composition and proportions approved before diving into details.">Hrubá kompozice scény a proporce — schvalujeme dřív, než jdeme do detailu.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03 /06</span>
+        <h3 data-lang-cs="Modelace" data-lang-en="Modeling">Modelace</h3>
+        <p data-lang-cs="Finální geometrie a topologie modelu podle zvoleného účelu." data-lang-en="Final 3D geometry and topology tailored to the target platform.">Finální geometrie a topologie modelu podle zvoleného účelu.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04 /06</span>
+        <h3 data-lang-cs="UV & textury" data-lang-en="UV & Textures">UV & textury</h3>
+        <p data-lang-cs="Rozbalení UV a tvorba materiálů v PBR pracovním postupu." data-lang-en="Unwrapping UVs and generating materials in a PBR workflow.">Rozbalení UV a tvorba materiálů v PBR pracovním postupu.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">05 /06</span>
+        <h3 data-lang-cs="Osvětlení & render" data-lang-en="Lighting & Render">Osvětlení & render</h3>
+        <p data-lang-cs="Nastavení scény, kamery a světel, render v cílovém rozlišení." data-lang-en="Lighting setup, camera framing, and rendering at target resolution.">Nastavení scény, kamery a světel, render v cílovém rozlišení.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">06 /06</span>
+        <h3 data-lang-cs="Dodání" data-lang-en="Delivery">Dodání</h3>
+        <p data-lang-cs="Finální soubory ve smluvených formátech a barevném profilu." data-lang-en="Final assets delivered in agreed formats and color profiles.">Finální soubory ve smluvených formátech a barevném profilu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spec" id="specifikace">
+  <div class="wrap spec-wrap">
+    <div>
+      <div class="eyebrow" data-lang-cs="Technické parametry" data-lang-en="Technical Details">Technické parametry</div>
+      <h2 style="font-size:clamp(28px,3.4vw,40px); margin-top:14px;" data-lang-cs="Spec sheet" data-lang-en="Spec Sheet">Spec sheet</h2>
+      <p style="color:#5B584F; margin-top:14px; font-size:15px;" data-lang-cs="Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu." data-lang-en="Standard studio pipeline — exact setups are always customized per project.">Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu.</p>
+    </div>
+    <div class="spec-panel">
+      <div class="spec-title">// Render pipeline</div>
+      <div class="spec-row"><span class="k">Primary Software</span><span class="v">Blender · Cycles</span></div>
+      <div class="spec-row"><span class="k">Realtime / Web3D</span><span class="v">Verge3D · Unreal Engine</span></div>
+      <div class="spec-row"><span class="k" data-lang-cs="Výstupní formáty" data-lang-en="Output Formats">Výstupní formáty</span><span class="v">OBJ · FBX · glTF · USD · Alembic</span></div>
+      <div class="spec-row"><span class="k" data-lang-cs="Max. rozlišení" data-lang-en="Max Resolution">Max. rozlišení</span><span class="v">8K, 32-bit HDR</span></div>
+      <div class="spec-row"><span class="k" data-lang-cs="Barevný profil" data-lang-en="Color Profile">Barevný profil</span><span class="v">ACES / sRGB</span></div>
+      <div class="spec-row"><span class="k" data-lang-cs="Odezva na poptávku" data-lang-en="Response Time">Odezva na poptávku</span><span class="v" data-lang-cs="Do 2 pracovních dnů" data-lang-en="Within 2 business days">Do 2 pracovních dnů</span></div>
+      <div class="spec-row"><span class="k" data-lang-cs="Licence & Práva" data-lang-en="Licensing">Licence & Práva</span><span class="v" data-lang-cs="Komerční použití v ceně" data-lang-en="Commercial use included">Komerční použití v ceně</span></div>
+      <div class="c2"></div>
+    </div>
+  </div>
+</section>
+
+<section class="custom-quotes" id="reference-klientu">
+  <div class="custom-quotes-wrap">
+    <div class="custom-sec-head">
+      <div class="custom-eyebrow" data-lang-cs="Reference klientů" data-lang-en="Testimonials">Reference klientů</div>
+      <h2 data-lang-cs="Co říkají klienti" data-lang-en="Client Feedback">Co říkají klienti</h2>
+    </div>
+    <div class="custom-quote-grid">
+      <div class="custom-quote-card">
+        <p class="q">„This freelancer is the founder of 3D models and animations. He works very very hard to provide the very best outcome which you didn't even expect. He is absoluteley the best.“</p>
+        <div class="attr">— Ali, 3D Project</div>
+      </div>
+      <div class="custom-quote-card">
+        <p class="q">„Awesome work, delivered way before deadline so gave me lots of time to add more detail. Hugely grateful for the speed and time taken to deliver on time.“</p>
+        <div class="attr">— Kevin, Game Project</div>
+      </div>
+      <div class="custom-quote-card">
+        <p class="q">„Very good communication. Creative, independent problem solving, project-related thinking and suggesting solutions. Very satisfied and anytime again.“</p>
+        <div class="attr">— Rudolf, 3D Modeling & Animation</div>
+      </div>
+      <div class="custom-quote-card">
+        <p class="q" data-lang-cs="„Kvalitní práce a komunikace. Realistické 3D modely potravinových doplňků v Blenderu dopadly skvěle.“" data-lang-en="„High quality work and communication. Realistic 3D models of food supplements in Blender turned out great.“">„Kvalitní práce a komunikace. Realistické 3D modely potravinových doplňků v Blenderu dopadly skvěle.“</p>
+        <div class="attr" data-lang-cs="— Petr, Produktová vizualizace" data-lang-en="— Petr, Product Visualization">— Petr, Produktová vizualizace</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="wrap contact-wrap">
+    <div class="contact-info">
+      <div class="eyebrow" data-lang-cs="Poptávka" data-lang-en="Inquiries">Poptávka</div>
+      <h2 style="font-size:clamp(30px,4vw,46px); margin-top:14px;" data-lang-cs="Probereme<br>váš projekt." data-lang-en="Let's talk about<br>your project.">Probereme<br>váš projekt.</h2>
+      <p class="lead" data-lang-cs="Napište pár vět o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny." data-lang-en="Send a few lines about what you need and we will respond within two business days with an estimate.">Napište pár vět o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny.</p>
+      <div class="contact-list">
+        <div class="row"><span class="k">E-mail</span><span class="v"><a href="mailto:info&#64;polygonbeater&#46;eu">info&#64;polygonbeater&#46;eu</a></span></div>
+        <div class="row"><span class="k" data-lang-cs="Telefon" data-lang-en="Phone">Telefon</span><span class="v"><a href="tel:+420704062297">+420 704 062 297</a></span></div>
+        <div class="row"><span class="k" data-lang-cs="Studio" data-lang-en="Location">Studio</span><span class="v" data-lang-cs="Orlová, Česká republika" data-lang-en="Czech Republic (EU)">Orlová, Česká republika</span></div>
+        <div class="row" style="margin-top: 6px;">
+          <span class="k" data-lang-cs="Sítě" data-lang-en="Socials">Sítě</span>
+          <span class="v social-links">
+            <a href="https://www.linkedin.com/company/polygon-beater/" target="_blank">LinkedIn</a> / 
+            <a href="https://www.facebook.com/PolygonBeater/" target="_blank">Facebook</a> / 
+            <a href="https://cz.pinterest.com/PolygonBeater/" target="_blank">Pinterest</a> / 
+            <a href="https://x.com/PolygonBeater" target="_blank">X</a> / 
+            <a href="https://github.com/Polygonbeater" target="_blank">GitHub</a> / 
+            <a href="https://www.freelancer.com/u/Koneval?frm=Koneval&sb=t" target="_blank">Freelancer</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <form id="contact-form">
+      <input type="hidden" name="access_key" value="b321aee0-7c60-49df-b2db-b0a0a085c731">
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      
+      <div class="form-row">
+        <div>
+          <label for="f-name" data-lang-cs="Jméno" data-lang-en="Name">Jméno</label>
+          <input id="f-name" name="name" type="text" placeholder="Jan Novák" required>
+        </div>
+        <div>
+          <label for="f-email" data-lang-cs="E-mail" data-lang-en="Email">E-mail</label>
+          <input id="f-email" name="email" type="email" placeholder="jan@firma.cz" required>
+        </div>
+      </div>
+      <div>
+        <label for="f-type" data-lang-cs="Typ projektu" data-lang-en="Project Type">Typ projektu</label>
+        <select id="f-type" name="project_type">
+          <option data-lang-cs="Produktová vizualizace" data-lang-en="Product Visualization">Produktová vizualizace</option>
+          <option data-lang-cs="Architektonická vizualizace" data-lang-en="Architectural Visualization">Architektonická vizualizace</option>
+          <option data-lang-cs="Herní assety" data-lang-en="Game Assets">Herní assety</option>
+          <option data-lang-cs="Animace" data-lang-en="Animation">Animace</option>
+          <option data-lang-cs="Jiné" data-lang-en="Other">Jiné</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-msg" data-lang-cs="Zpráva" data-lang-en="Message">Zpráva</label>
+        <textarea id="f-msg" name="message" placeholder="Popište váš projekt, termín a orientační rozpočet…" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submit-btn" data-lang-cs="Odeslat poptávku" data-lang-en="Send Request">Odeslat poptávku</button>
+      
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--steel-500); margin-top: 10px; line-height: 1.4;">
+        <span data-lang-cs="Odesláním formuláře souhlasíte se" data-lang-en="By submitting you agree to the">Odesláním formuláře souhlasíte se</span> <a href="ochrana-soukromi.html" style="color: var(--steel-300); text-decoration: underline;" data-lang-cs="zpracováním osobních údajů" data-lang-en="Privacy Policy">zpracováním osobních údajů</a>.
+      </p>
+      <div id="form-result"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><img src="logo.svg" alt="Polygon Beater logo"></span>
+      <span class="brand-word">
+        <span class="name">Polygon Beater</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="ochrana-soukromi.html" data-lang-cs="Ochrana soukromí" data-lang-en="Privacy Policy">Ochrana soukromí</a>
+      <a href="#sluzby" data-lang-cs="Služby" data-lang-en="Services">Služby</a>
+      <a href="#realizace" data-lang-cs="Realizace" data-lang-en="Projects">Realizace</a>
+      <a href="#postup" data-lang-cs="Postup" data-lang-en="Process">Postup</a>
+      <a href="#specifikace" data-lang-cs="Specifikace" data-lang-en="Specs">Specifikace</a>
+      <a href="#reference-klientu" data-lang-cs="Reference" data-lang-en="Reviews">Reference</a>
+      <a href="#kontakt" data-lang-cs="Kontakt" data-lang-en="Contact">Kontakt</a>
+    </nav>
+    <span class="copy">© <span id="year"></span> Polygon Beater 3D Graphic Studio</span>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p data-lang-cs="Tento web používá soubory cookies a zpracovává základní údaje pro zajištění správného fungování. Více naleznete v části <a href='ochrana-soukromi.html'>Ochrana soukromí</a>." data-lang-en="This website uses essential cookies to ensure functionality. Learn more in our <a href='ochrana-soukromi.html'>Privacy Policy</a>.">Tento web používá soubory cookies a zpracovává základní údaje pro zajištění správného fungování. Více naleznete v části <a href="ochrana-soukromi.html">Ochrana soukromí</a>.</p>
+  <button class="cookie-btn" id="cookie-accept" data-lang-cs="Rozumím" data-lang-en="Got it">Rozumím</button>
+</div>
+
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Zpět nahoru">
+  <svg viewBox="0 0 24 24">
+    <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+  </svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function switchLanguage(lang) {
+    document.querySelectorAll('[data-lang-cs]').forEach(el => {
+      const text = el.getAttribute(`data-lang-${lang}`);
+      if (text) el.innerHTML = text;
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`btn-${lang}`).classList.add('active');
+    document.documentElement.lang = lang;
+    localStorage.setItem('pb_user_lang', lang);
+  }
+
+  (function initLanguage() {
+    const savedLang = localStorage.getItem('pb_user_lang');
+    if (savedLang) {
+      switchLanguage(savedLang);
+    } else {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.startsWith('cs') || userLang.startsWith('sk')) {
+        switchLanguage('cs');
+      } else {
+        switchLanguage('en');
+      }
+    }
+  })();
+
+  const backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieAccept = document.getElementById('cookie-accept');
+
+  if (localStorage.getItem('pb_privacy_accepted')) {
+    cookieBanner.style.display = 'none';
+  }
+
+  cookieAccept.addEventListener('click', function() {
+    localStorage.setItem('pb_privacy_accepted', 'true');
+    cookieBanner.style.display = 'none';
+  });
+
+  const form = document.getElementById('contact-form');
+  const result = document.getElementById('form-result');
+  const btn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    const currentLang = document.documentElement.lang;
+    
+    result.innerHTML = currentLang === 'cs' ? "Odesílám poptávku..." : "Sending request...";
+    result.style.color = "var(--steel-300)";
+    btn.disabled = true;
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
+    })
+    .then(async (response) => {
+      let jsonResponse = await response.json();
+      if (response.status == 200) {
+        result.innerHTML = currentLang === 'cs' ? "Poptávka byla úspěšně odeslána ✓" : "Request sent successfully ✓";
+        result.style.color = "#4CAF50";
+        btn.textContent = currentLang === 'cs' ? 'Odesláno ✓' : 'Sent ✓';
+        form.reset();
+      } else {
+        result.innerHTML = jsonResponse.message || "Error submitting form.";
+        result.style.color = "var(--red-500)";
+        btn.disabled = false;
+      }
+    })
+    .catch(error => {
+      result.innerHTML = currentLang === 'cs' ? "Chyba připojení k serveru." : "Server connection error.";
+      result.style.color = "var(--red-500)";
+      btn.disabled = false;
+    });
+  });
+
+  const cube = document.getElementById('cube');
+  const stage = document.querySelector('.cube-stage');
+  if (stage && cube && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    stage.addEventListener('mousemove', (e)=>{
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      cube.style.animationPlayState = 'paused';
+      cube.style.transform = `rotateX(${-18 - y*20}deg) rotateY(${x*40}deg)`;
+    });
+    stage.addEventListener('mouseleave', ()=>{
+      cube.style.animationPlayState = 'running';
+      cube.style.transform = '';
+    });
+  }
+</script>
+
+</body>
+</html>
