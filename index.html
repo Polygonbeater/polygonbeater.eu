@@ -267,6 +267,7 @@
   }
   .btn-primary:hover{background:var(--red-900); color:var(--white); transform:translateY(-1px);}
 
+  /* --- CUBE ANIMATION (FIX PRO FIREFOX) --- */
   .cube-stage{
     height:420px; 
     width:100%;
@@ -281,23 +282,27 @@
     width:180px; height:180px; position:relative;
     transform-style:preserve-3d;
     animation:spin 18s linear infinite;
+    will-change: transform;
   }
   .cube .face{
     position:absolute; width:180px; height:180px;
     border:1px solid var(--red-500);
     background:rgba(122,14,18,0.22);
+    transform-style:preserve-3d;
+    outline: 1px solid transparent;
   }
   .cube .face.dots{
     background-image:radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
     background-size:18px 18px;
     background-position:center;
   }
-  .face.front{ transform:translateZ(90px); }
-  .face.back{ transform:translateZ(-90px) rotateY(180deg); }
-  .face.right{ transform:rotateY(90deg) translateZ(90px); }
-  .face.left{ transform:rotateY(-90deg) translateZ(90px); }
-  .face.top{ transform:rotateX(90deg) translateZ(90px); }
-  .face.bottom{ transform:rotateX(-90deg) translateZ(90px); }
+  .face.front{ transform:translateZ(90.5px); }
+  .face.back{ transform:translateZ(-90.5px) rotateY(180deg); }
+  .face.right{ transform:rotateY(90deg) translateZ(90.5px); }
+  .face.left{ transform:rotateY(-90deg) translateZ(90.5px); }
+  .face.top{ transform:rotateX(90deg) translateZ(90.5px); }
+  .face.bottom{ transform:rotateX(-90deg) translateZ(90.5px); }
+
   @keyframes spin{
     from{ transform:rotateX(-18deg) rotateY(0deg); }
     to{ transform:rotateX(-18deg) rotateY(360deg); }
@@ -315,12 +320,12 @@
     }
     .cube-stage{height:280px; aspect-ratio:1/1; contain:strict;}
     .cube, .cube .face{width:130px; height:130px;}
-    .face.front{transform:translateZ(65px);}
-    .face.back{transform:translateZ(-65px) rotateY(180deg);}
-    .face.right{transform:rotateY(90deg) translateZ(65px);}
-    .face.left{transform:rotateY(-90deg) translateZ(65px);}
-    .face.top{transform:rotateX(90deg) translateZ(65px);}
-    .face.bottom{transform:rotateX(-90deg) translateZ(65px);}
+    .face.front{transform:translateZ(65.5px);}
+    .face.back{transform:translateZ(-65.5px) rotateY(180deg);}
+    .face.right{transform:rotateY(90deg) translateZ(65.5px);}
+    .face.left{transform:rotateY(-90deg) translateZ(65.5px);}
+    .face.top{transform:rotateX(90deg) translateZ(65.5px);}
+    .face.bottom{transform:rotateX(-90deg) translateZ(65.5px);}
   }
 
   .sec-head{
