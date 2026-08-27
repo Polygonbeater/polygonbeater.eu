@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-lang-cs="404 — Stránka nenalezena | Polygon Beater" data-lang-en="404 — Page Not Found | Polygon Beater">404 — Stránka nenalezena | Polygon Beater</title>
+<title>404 — Stránka nenalezena | Polygon Beater</title>
 
 <!-- SEO Meta Tagy -->
 <meta name="robots" content="noindex, follow">
@@ -11,71 +11,43 @@
 <!-- Favicona -->
 <link rel="icon" type="image/svg+xml" href="/Logo.svg">
 
+<!-- Asynchronní načítání písem -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+</noscript>
+
 <style>
   :root{
-    --red-900:#7A0E12;
-    --red-700:#9C1319;
-    --red-500:#C21A20;
+    --red-500:#E53935;
     --ink-950:#0B0B0C;
-    --ink-800:#17171A;
-    --ink-700:#232326;
-    --paper-050:#F3F1EC;
-    --paper-100:#E9E4D9;
-    --steel-500:#8A8781;
-    --steel-300:#B7B4AC;
+    --steel-300:#D5D2CA;
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --edge: 1px solid rgba(255,255,255,0.10);
+    --edge: 1px solid rgba(255,255,255,0.15);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
   body{
     background:var(--ink-950);
     color:var(--white);
     font-family:var(--body);
-    line-height:1.5;
     min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    display:flex; flex-direction:column; justify-content:space-between;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit; text-decoration:none;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 32px; width:100%;}
-  @media (max-width:640px){ .wrap{padding:0 20px;} }
-
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--red-500);
-    display:flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:18px; height:1px;
-    background:var(--red-500);
-    display:inline-block;
-  }
 
   header{
-    position:sticky; top:0; z-index:100;
-    background:rgba(11,11,12,0.92);
-    backdrop-filter:blur(10px);
     border-bottom:var(--edge);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    height:76px;
+    padding:20px 32px;
   }
   .brand{display:flex; align-items:center; gap:12px;}
   .brand-mark{
@@ -83,198 +55,74 @@
     overflow:hidden; background:var(--white); flex-shrink:0;
   }
   .brand-mark img{width:100%; height:100%; object-fit:cover;}
-  .brand-word{color:var(--white); line-height:1.05;}
   .brand-word .name{
     font-family:var(--display); font-weight:900; font-size:19px;
-    letter-spacing:0.01em; text-transform:uppercase;
+    letter-spacing:0.01em; text-transform:uppercase; color:var(--white);
   }
   .brand-word .sub{
     font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
     color:var(--red-500); text-transform:uppercase;
   }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  main{
+    flex:1; display:flex; align-items:center; justify-content:center;
+    padding:60px 20px; text-align:center;
   }
+  .content{max-width:540px;}
+  .num{
+    font-family:var(--display); font-size:clamp(90px, 15vw, 140px);
+    font-weight:900; color:var(--red-500); line-height:0.85;
+  }
+  h1{
+    font-family:var(--display); font-size:28px; text-transform:uppercase;
+    margin:18px 0 12px; letter-spacing:0.02em;
+  }
+  p{color:var(--steel-300); font-size:16px; margin-bottom:32px;}
+  
+  .btn-primary{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--red-500); color:var(--ink-950); padding:16px 28px;
+    border:1px solid var(--red-500); display:inline-block; font-weight:600;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background:transparent; color:var(--white); transform:translateY(-1px);}
 
-  .lang-switcher {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--steel-300);
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    background: var(--ink-800);
-    padding: 6px 10px;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 4px;
-  }
-  .lang-btn {
-    background: none;
-    border: none;
-    color: var(--steel-500);
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 600;
-    transition: color .2s ease;
-  }
-  .lang-btn.active {
-    color: var(--red-500);
-  }
-  .lang-btn:hover {
-    color: var(--white);
-  }
-
-  .main-error {
-    padding: 100px 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-    background-size: 44px 44px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  .error-code {
-    font-family: var(--display);
-    font-size: clamp(80px, 16vw, 180px);
-    font-weight: 900;
-    line-height: 0.85;
-    color: var(--red-500);
-    letter-spacing: -0.02em;
-    margin: 16px 0;
-  }
-
-  .error-title {
-    font-family: var(--display);
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .error-desc {
-    color: var(--steel-300);
-    font-size: 16px;
-    max-width: 500px;
-    margin-bottom: 32px;
-  }
-
-  .btn-primary {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: var(--red-500);
-    color: var(--ink-950);
-    padding: 16px 28px;
-    border: 1px solid var(--red-500);
-    display: inline-block;
-    font-weight: 600;
-    transition: background .2s ease, color .2s ease, transform .2s ease;
-  }
-  .btn-primary:hover {
-    background: transparent;
-    color: var(--white);
-    transform: translateY(-1px);
-  }
-
-  footer {
-    background: var(--ink-950);
-    border-top: var(--edge);
-    padding: 32px 0;
-  }
-  .foot-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  footer .copy {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--steel-500);
-    letter-spacing: 0.04em;
+  footer{
+    border-top:var(--edge); padding:24px 32px; text-align:center;
+    font-family:var(--mono); font-size:11.5px; color:var(--steel-300);
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap nav">
-    <a href="/" class="brand">
-      <span class="brand-mark"><img src="/Logo.svg" alt="Polygon Beater logo"></span>
-      <span class="brand-word">
-        <span class="name">Polygon Beater</span><br>
-        <span class="sub">3D Graphic Studio</span>
-      </span>
-    </a>
-    <div class="nav-right">
-      <div class="lang-switcher">
-        <button class="lang-btn active" id="btn-cs" onclick="switchLanguage('cs')">CZ</button>
-        <span>|</span>
-        <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">EN</button>
-      </div>
-    </div>
-  </div>
+  <a href="/" class="brand">
+    <span class="brand-mark"><img src="/Logo.svg" alt="Polygon Beater logo"></span>
+    <span class="brand-word">
+      <span class="name">Polygon Beater</span><br>
+      <span class="sub">3D Graphic Studio</span>
+    </span>
+  </a>
 </header>
 
-<main class="main-error">
-  <div class="wrap">
-    <div class="eyebrow" data-lang-cs="// CHYBA 404 — MIMO POLYGON" data-lang-en="// ERROR 404 — OUT OF BOUNDS">// CHYBA 404 — MIMO POLYGON</div>
-    <div class="error-code">404</div>
-    <h1 class="error-title" data-lang-cs="Stránka nenalezena" data-lang-en="Page Not Found">Stránka nenalezena</h1>
-    <p class="error-desc" data-lang-cs="Požadovaná adresa neexistuje, byla přesunuta nebo zrušena. Vracíme se zpět do studia." data-lang-en="The requested URL does not exist, was moved, or removed. Heading back to the studio homepage.">Požadovaná adresa neexistuje, byla přesunuta nebo zrušena. Vracíme se zpět do studia.</p>
-    <a href="/" class="btn-primary" data-lang-cs="← Zpět na hlavní stranu" data-lang-en="← Back to Home">← Zpět na hlavní stranu</a>
+<main>
+  <div class="content">
+    <div class="num">404</div>
+    <h1>Stránka nenalezena</h1>
+    <p>Požadovaná adresa na tomto serveru neexistuje nebo byla přesunuta.</p>
+    <a href="/" class="btn-primary">← Zpět na hlavní stranu</a>
   </div>
 </main>
 
 <footer>
-  <div class="wrap foot-wrap">
-    <a href="/" class="brand">
-      <span class="brand-mark"><img src="/Logo.svg" alt="Polygon Beater logo"></span>
-      <span class="brand-word">
-        <span class="name">Polygon Beater</span>
-      </span>
-    </a>
-    <span class="copy">© <span id="year"></span> Polygon Beater 3D Graphic Studio</span>
-  </div>
+  © <span id="year"></span> Polygon Beater 3D Graphic Studio
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  function switchLanguage(lang) {
-    document.querySelectorAll('[data-lang-cs]').forEach(el => {
-      const text = el.getAttribute(`data-lang-${lang}`);
-      if (text) el.innerHTML = text;
-    });
-
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`btn-${lang}`).classList.add('active');
-    document.documentElement.lang = lang;
-    localStorage.setItem('pb_user_lang', lang);
-  }
-
-  (function initLanguage() {
-    const savedLang = localStorage.getItem('pb_user_lang');
-    if (savedLang) {
-      switchLanguage(savedLang);
-    } else {
-      const userLang = navigator.language || navigator.userLanguage;
-      if (userLang.startsWith('cs') || userLang.startsWith('sk')) {
-        switchLanguage('cs');
-      } else {
-        switchLanguage('en');
-      }
-    }
-  })();
 </script>
 
 </body>
 </html>
+
+

@@ -26,29 +26,35 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://polygonbeater.eu/ochrana-soukromi.html">
 
+<!-- Asynchronní načítání písem pro maximální Výkon -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+</noscript>
+
 <style>
   :root{
     --red-900:#7A0E12;
-    --red-700:#9C1319;
-    --red-500:#C21A20;
+    --red-700:#B7151B;
+    --red-500:#E53935;
     --ink-950:#0B0B0C;
     --ink-800:#17171A;
     --ink-700:#232326;
     --paper-050:#F3F1EC;
     --paper-100:#E9E4D9;
-    --steel-500:#8A8781;
-    --steel-300:#B7B4AC;
+    --steel-500:#524F49;
+    --steel-300:#D5D2CA;
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --edge: 1px solid rgba(255,255,255,0.10);
-    --edge-dark: 1px solid rgba(11,11,12,0.12);
+    --edge: 1px solid rgba(255,255,255,0.15);
+    --edge-dark: 1px solid rgba(11,11,12,0.18);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -135,18 +141,17 @@
   .lang-btn {
     background: none;
     border: none;
-    color: var(--steel-500);
+    color: var(--steel-300);
     cursor: pointer;
     font-family: var(--mono);
     font-size: 12px;
     font-weight: 600;
-    transition: color .2s ease;
+    opacity: 0.75;
+    transition: opacity .2s ease;
   }
-  .lang-btn.active {
-    color: var(--red-500);
-  }
-  .lang-btn:hover {
+  .lang-btn.active, .lang-btn:hover {
     color: var(--white);
+    opacity: 1;
   }
 
   .back-link{
@@ -169,10 +174,10 @@
     font-size:24px; font-family:var(--body); font-weight:700;
     text-transform:none; margin-bottom:12px; color:var(--ink-950);
   }
-  .privacy-block p, .privacy-block ul{ color:#444; font-size:15.5px; margin-bottom:12px; }
+  .privacy-block p, .privacy-block ul{ color:#33312C; font-size:15.5px; margin-bottom:12px; }
   .privacy-block ul{ padding-left:20px; list-style-type:disc; }
   .privacy-block li{ margin-bottom:6px; }
-  a.inline-link{ color:var(--red-700); text-decoration:underline; }
+  a.inline-link{ color:var(--red-700); text-decoration:underline; font-weight:500; }
   a.inline-link:hover{ color:var(--red-500); }
 
   footer{background:var(--ink-950); color:var(--white); border-top:var(--edge); padding:40px 0;}
@@ -181,7 +186,7 @@
     max-width:1200px; margin:0 auto; padding:0 32px;
   }
   .foot-wrap .brand-word .name{font-size:16px;}
-  footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-500); letter-spacing:0.04em;}
+  footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-300); letter-spacing:0.04em;}
   footer nav.links{display:flex; align-items:center; gap:24px;}
   footer nav.links a{
     color:var(--steel-300); font-family:var(--mono); font-size:13px;
@@ -322,54 +327,56 @@
   </div>
 </header>
 
-<section class="hero-privacy">
-  <div class="wrap">
-    <div class="eyebrow" data-lang-cs="Právní informace" data-lang-en="Legal Information">Právní informace</div>
-    <h1 data-lang-cs="Ochrana osobních údajů" data-lang-en="Privacy Policy">Ochrana osobních údajů</h1>
-  </div>
-</section>
-
-<section class="content-sec">
-  <div class="wrap">
-    
-    <div class="privacy-block">
-      <h2 data-lang-cs="1. Správce osobních údajů" data-lang-en="1. Data Controller">1. Správce osobních údajů</h2>
-      <p data-lang-cs="Správcem osobních údajů zpracovávaných na tomto webu je Vítězslav Koneval (Polygon Beater 3D Graphic Studio), se sídlem v Orlové, Česká republika." data-lang-en="The data controller for personal data processed on this website is Vítězslav Koneval (Polygon Beater 3D Graphic Studio), located in Orlová, Czech Republic.">Správcem osobních údajů zpracovávaných na tomto webu je Vítězslav Koneval (Polygon Beater 3D Graphic Studio), se sídlem v Orlové, Česká republika.</p>
-      <p data-lang-cs="Kontakt: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>" data-lang-en="Contact: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>">Kontakt: <a href="mailto:info&#64;polygonbeater&#46;eu" class="inline-link">info&#64;polygonbeater&#46;eu</a></p>
+<main>
+  <section class="hero-privacy">
+    <div class="wrap">
+      <div class="eyebrow" data-lang-cs="Právní informace" data-lang-en="Legal Information">Právní informace</div>
+      <h1 data-lang-cs="Ochrana osobních údajů" data-lang-en="Privacy Policy">Ochrana osobních údajů</h1>
     </div>
+  </section>
 
-    <div class="privacy-block">
-      <h2 data-lang-cs="2. Jaké údaje zpracováváme" data-lang-en="2. What Data We Process">2. Jaké údaje zpracováváme</h2>
-      <p data-lang-cs="Zpracováváme pouze údaje, které nám sami poskytnete při vyplnění kontaktního nebo poptávkového formuláře:" data-lang-en="We only process personal data that you voluntarily provide when filling out our contact form:">Zpracováváme pouze údaje, které nám sami poskytnete při vyplnění kontaktního nebo poptávkového formuláře:</p>
-      <ul>
-        <li data-lang-cs="Jméno a příjmení" data-lang-en="First and Last Name">Jméno a příjmení</li>
-        <li data-lang-cs="E-mailová adresa" data-lang-en="Email address">E-mailová adresa</li>
-        <li data-lang-cs="Obsah zprávy a informace o poptávaném projektu" data-lang-en="Message content and project specifics">Obsah zprávy a informace o poptávaném projektu</li>
-      </ul>
+  <section class="content-sec">
+    <div class="wrap">
+      
+      <div class="privacy-block">
+        <h2 data-lang-cs="1. Správce osobních údajů" data-lang-en="1. Data Controller">1. Správce osobních údajů</h2>
+        <p data-lang-cs="Správcem osobních údajů zpracovávaných na tomto webu je Vítězslav Koneval (Polygon Beater 3D Graphic Studio), se sídlem v Orlové, Česká republika." data-lang-en="The data controller for personal data processed on this website is Vítězslav Koneval (Polygon Beater 3D Graphic Studio), located in Orlová, Czech Republic.">Správcem osobních údajů zpracovávaných na tomto webu je Vítězslav Koneval (Polygon Beater 3D Graphic Studio), se sídlem v Orlové, Česká republika.</p>
+        <p data-lang-cs="Kontakt: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>" data-lang-en="Contact: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>">Kontakt: <a href="mailto:info&#64;polygonbeater&#46;eu" class="inline-link">info&#64;polygonbeater&#46;eu</a></p>
+      </div>
+
+      <div class="privacy-block">
+        <h2 data-lang-cs="2. Jaké údaje zpracováváme" data-lang-en="2. What Data We Process">2. Jaké údaje zpracováváme</h2>
+        <p data-lang-cs="Zpracováváme pouze údaje, které nám sami poskytnete při vyplnění kontaktního nebo poptávkového formuláře:" data-lang-en="We only process personal data that you voluntarily provide when filling out our contact form:">Zpracováváme pouze údaje, které nám sami poskytnete při vyplnění kontaktního nebo poptávkového formuláře:</p>
+        <ul>
+          <li data-lang-cs="Jméno a příjmení" data-lang-en="First and Last Name">Jméno a příjmení</li>
+          <li data-lang-cs="E-mailová adresa" data-lang-en="Email address">E-mailová adresa</li>
+          <li data-lang-cs="Obsah zprávy a informace o poptávaném projektu" data-lang-en="Message content and project specifics">Obsah zprávy a informace o poptávaném projektu</li>
+        </ul>
+      </div>
+
+      <div class="privacy-block">
+        <h2 data-lang-cs="3. Účel a právní základ zpracování" data-lang-en="3. Purpose and Legal Basis">3. Účel a právní základ zpracování</h2>
+        <p data-lang-cs="Vaše údaje zpracováváme výhradně za účelem vyřízení vaší poptávky, zodpovězení dotazu a navázání případné smluvní spolupráce. Právním základem je jednání o smlouvě na žádost subjektu údajů podle čl. 6 odst. 1 písm. b) GDPR." data-lang-en="We process your data solely for responding to inquiries, processing project requests, and negotiating prospective contracts under Art. 6(1)(b) GDPR.">Vaše údaje zpracováváme výhradně za účelem vyřízení vaší poptávky, zodpovězení dotazu a navázání případné smluvní spolupráce. Právním základem je jednání o smlouvě na žádost subjektu údajů podle čl. 6 odst. 1 písm. b) GDPR.</p>
+      </div>
+
+      <div class="privacy-block">
+        <h2 data-lang-cs="4. Zpracovatelé a předávání třetím stranám" data-lang-en="4. Processors & Third Parties">4. Zpracovatelé a předávání třetím stranám</h2>
+        <p data-lang-cs="K doručování zpráv z formuláře využíváme službu <strong>Web3Forms</strong>. Údaje z formuláře jsou bezpečně přeneseny a doručeny do naší e-mailové schránky. Vaše osobní údaje neprodáváme ani nesdílíme s dalšími třetími stranami pro marketingové účely." data-lang-en="We utilize <strong>Web3Forms</strong> to route incoming contact queries securely to our primary mailbox. We do not sell or share your personal information with third parties for marketing purposes.">K doručování zpráv z formuláře využíváme službu <strong>Web3Forms</strong>. Údaje z formuláře jsou bezpečně přeneseny a doručeny do naší e-mailové schránky. Vaše osobní údaje neprodáváme ani nesdílíme s dalšími třetími stranami pro marketingové účely.</p>
+      </div>
+
+      <div class="privacy-block">
+        <h2 data-lang-cs="5. Soubory Cookies" data-lang-en="5. Cookies Policy">5. Soubory Cookies</h2>
+        <p data-lang-cs="Tento web používá pouze technicky nezbytné soubory cookies a lokální úložiště (localStorage) pro zapamatování vašich preferencí (souhlas s cookie lištou a volba jazyka). Nepoužíváme sledovací ani analytické cookies třetích stran." data-lang-en="This site uses essential cookies and local storage (localStorage) solely to store user preferences (cookie banner state and language choice). We do not employ third-party tracking or advertising cookies.">Tento web používá pouze technicky nezbytné soubory cookies a lokální úložiště (localStorage) pro zapamatování vašich preferencí (souhlas s cookie lištou a volba jazyka). Nepoužíváme sledovací ani analytické cookies třetích stran.</p>
+      </div>
+
+      <div class="privacy-block">
+        <h2 data-lang-cs="6. Vaše práva" data-lang-en="6. Your Rights">6. Vaše práva</h2>
+        <p data-lang-cs="Dle nařízení GDPR máte právo na přístup k osobním údajům, jejich opravu, výmaz, omezení zpracování a právo vznést námitku. S jakýmkoliv dotazem ohledně vašich údajů se můžete obrátit na e-mail: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>." data-lang-en="Under GDPR, you hold the right to access, rectify, restrict, or erase your personal data upon request. For any privacy queries, contact us at: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>.">Dle nařízení GDPR máte právo na přístup k osobním údajům, jejich opravu, výmaz, omezení zpracování a právo vznést námitku. S jakýmkoliv dotazem ohledně vašich údajů se můžete obrátit na e-mail: <a href="mailto:info&#64;polygonbeater&#46;eu" class="inline-link">info&#64;polygonbeater&#46;eu</a>.</p>
+      </div>
+
     </div>
-
-    <div class="privacy-block">
-      <h2 data-lang-cs="3. Účel a právní základ zpracování" data-lang-en="3. Purpose and Legal Basis">3. Účel a právní základ zpracování</h2>
-      <p data-lang-cs="Vaše údaje zpracováváme výhradně za účelem vyřízení vaší poptávky, zodpovězení dotazu a navázání případné smluvní spolupráce. Právním základem je jednání o smlouvě na žádost subjektu údajů podle čl. 6 odst. 1 písm. b) GDPR." data-lang-en="We process your data solely for responding to inquiries, processing project requests, and negotiating prospective contracts under Art. 6(1)(b) GDPR.">Vaše údaje zpracováváme výhradně za účelem vyřízení vaší poptávky, zodpovězení dotazu a navázání případné smluvní spolupráce. Právním základem je jednání o smlouvě na žádost subjektu údajů podle čl. 6 odst. 1 písm. b) GDPR.</p>
-    </div>
-
-    <div class="privacy-block">
-      <h2 data-lang-cs="4. Zpracovatelé a předávání třetím stranám" data-lang-en="4. Processors & Third Parties">4. Zpracovatelé a předávání třetím stranám</h2>
-      <p data-lang-cs="K doručování zpráv z formuláře využíváme službu <strong>Web3Forms</strong>. Údaje z formuláře jsou bezpečně přeneseny a doručeny do naší e-mailové schránky. Vaše osobní údaje neprodáváme ani nesdílíme s dalšími třetími stranami pro marketingové účely." data-lang-en="We utilize <strong>Web3Forms</strong> to route incoming contact queries securely to our primary mailbox. We do not sell or share your personal information with third parties for marketing purposes.">K doručování zpráv z formuláře využíváme službu <strong>Web3Forms</strong>. Údaje z formuláře jsou bezpečně přeneseny a doručeny do naší e-mailové schránky. Vaše osobní údaje neprodáváme ani nesdílíme s dalšími třetími stranami pro marketingové účely.</p>
-    </div>
-
-    <div class="privacy-block">
-      <h2 data-lang-cs="5. Soubory Cookies" data-lang-en="5. Cookies Policy">5. Soubory Cookies</h2>
-      <p data-lang-cs="Tento web používá pouze technicky nezbytné soubory cookies a lokální úložiště (localStorage) pro zapamatování vašich preferencí (souhlas s cookie lištou a volba jazyka). Nepoužíváme sledovací ani analytické cookies třetích stran." data-lang-en="This site uses essential cookies and local storage (localStorage) solely to store user preferences (cookie banner state and language choice). We do not employ third-party tracking or advertising cookies.">Tento web používá pouze technicky nezbytné soubory cookies a lokální úložiště (localStorage) pro zapamatování vašich preferencí (souhlas s cookie lištou a volba jazyka). Nepoužíváme sledovací ani analytické cookies třetích stran.</p>
-    </div>
-
-    <div class="privacy-block">
-      <h2 data-lang-cs="6. Vaše práva" data-lang-en="6. Your Rights">6. Vaše práva</h2>
-      <p data-lang-cs="Dle nařízení GDPR máte právo na přístup k osobním údajům, jejich opravu, výmaz, omezení zpracování a právo vznést námitku. S jakýmkoliv dotazem ohledně vašich údajů se můžete obrátit na e-mail: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>." data-lang-en="Under GDPR, you hold the right to access, rectify, restrict, or erase your personal data upon request. For any privacy queries, contact us at: <a href='mailto:info&#64;polygonbeater&#46;eu' class='inline-link'>info&#64;polygonbeater&#46;eu</a>.">Dle nařízení GDPR máte právo na přístup k osobním údajům, jejich opravu, výmaz, omezení zpracování a právo vznést námitku. S jakýmkoliv dotazem ohledně vašich údajů se můžete obrátit na e-mail: <a href="mailto:info&#64;polygonbeater&#46;eu" class="inline-link">info&#64;polygonbeater&#46;eu</a>.</p>
-    </div>
-
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
   <div class="wrap foot-wrap">
