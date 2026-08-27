@@ -397,6 +397,13 @@
   .spec-row .k{color:var(--steel-500);}
   .spec-row .v{text-align:right; font-weight:500;}
 
+  @media (max-width: 860px) {
+    .spec { padding: 60px 0; }
+    .spec-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .spec-panel { padding: 20px 18px; }
+    .spec-row { font-size: 12.5px; }
+  }
+
   .custom-quotes {
     padding: 100px 20px;
     background: #E9E4D9;
@@ -596,8 +603,29 @@
   }
 
   @media (max-width: 480px) {
-    .cookie-banner { left: 10px; right: 10px; bottom: 10px; max-width: none; }
-    .back-to-top { bottom: 16px; right: 16px; width: 40px; height: 40px; }
+    .cookie-banner {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      max-width: none;
+      padding: 14px 16px;
+      gap: 10px;
+    }
+    .cookie-banner p {
+      font-size: 12px;
+    }
+    .cookie-btn {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .back-to-top {
+      bottom: 80px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+    }
   }
 </style>
 </head>
