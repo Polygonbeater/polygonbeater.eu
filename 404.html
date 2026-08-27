@@ -11,27 +11,28 @@
 <!-- Favicona -->
 <link rel="icon" type="image/svg+xml" href="/Logo.svg">
 
-<!-- Asynchronní načítání písem -->
+<!-- Asynchronní a optimalizované načítání písem -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 </noscript>
 
 <style>
   :root{
-    --red-500:#E53935;
+    --red-500:#FF4D4D;
+    --red-700:#B7151B;
     --ink-950:#0B0B0C;
-    --steel-300:#D5D2CA;
+    --steel-300:#E2DFD7;
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --edge: 1px solid rgba(255,255,255,0.15);
+    --edge: 1px solid rgba(255,255,255,0.18);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -61,7 +62,7 @@
   }
   .brand-word .sub{
     font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
-    color:var(--red-500); text-transform:uppercase;
+    color:var(--red-500); text-transform:uppercase; font-weight:600;
   }
 
   main{
@@ -81,8 +82,8 @@
   
   .btn-primary{
     font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
-    background:var(--red-500); color:var(--ink-950); padding:16px 28px;
-    border:1px solid var(--red-500); display:inline-block; font-weight:600;
+    background:var(--red-700); color:var(--white); padding:16px 28px;
+    border:1px solid var(--red-700); display:inline-block; font-weight:600;
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
   .btn-primary:hover{background:transparent; color:var(--white); transform:translateY(-1px);}
@@ -124,5 +125,3 @@
 
 </body>
 </html>
-
-

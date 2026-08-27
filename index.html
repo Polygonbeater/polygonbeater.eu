@@ -57,34 +57,35 @@
 }
 </script>
 
-<!-- Asynchronní načítání písem pro maximální Výkon -->
+<!-- Asynchronní a optimalizované načítání písem -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 </noscript>
 
 <style>
   :root{
     --red-900:#7A0E12;
     --red-700:#B7151B;
-    --red-500:#E53935;
+    --red-500:#FF4D4D; /* Jasná červená pro tmavá pozadí (WCAG AA kontrast > 6:1) */
+    --red-dark:#A31217; /* Tmavá červená pro světlé podklady */
     --ink-950:#0B0B0C;
     --ink-800:#17171A;
     --ink-700:#232326;
     --paper-050:#F3F1EC;
     --paper-100:#E9E4D9;
-    --steel-500:#524F49;
-    --steel-300:#D5D2CA;
+    --steel-500:#3B3934; /* Tmavá šedá pro světlé pozadí (kontrast > 9:1) */
+    --steel-300:#E2DFD7; /* Světlá šedá pro tmavé pozadí (kontrast > 12:1) */
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --edge: 1px solid rgba(255,255,255,0.15);
+    --edge: 1px solid rgba(255,255,255,0.18);
     --edge-dark: 1px solid rgba(11,11,12,0.18);
   }
 
@@ -111,11 +112,13 @@
     text-transform:uppercase;
     color:var(--red-500);
     display:flex; align-items:center; gap:10px;
+    font-weight:600;
   }
+  .on-light .eyebrow{ color:var(--red-dark); }
   .eyebrow::before{
     content:"";
     width:18px; height:1px;
-    background:var(--red-500);
+    background:currentColor;
     display:inline-block;
   }
 
@@ -134,7 +137,7 @@
 
   header{
     position:sticky; top:0; z-index:100;
-    background:rgba(11,11,12,0.92);
+    background:rgba(11,11,12,0.94);
     backdrop-filter:blur(10px);
     border-bottom:var(--edge);
   }
@@ -156,7 +159,7 @@
   }
   .brand-word .sub{
     font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
-    color:var(--red-500); text-transform:uppercase;
+    color:var(--red-500); text-transform:uppercase; font-weight:600;
   }
   nav.links{display:flex; align-items:center; gap:24px;}
   nav.links a{
@@ -188,7 +191,7 @@
     align-items: center;
     background: var(--ink-800);
     padding: 6px 10px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 4px;
   }
   .lang-btn {
@@ -199,7 +202,7 @@
     font-family: var(--mono);
     font-size: 12px;
     font-weight: 600;
-    opacity: 0.75;
+    opacity: 0.85;
     transition: opacity .2s ease;
   }
   .lang-btn.active, .lang-btn:hover {
@@ -209,9 +212,9 @@
 
   .nav-cta{
     font-family:var(--mono); font-size:12px; text-transform:uppercase;
-    letter-spacing:0.08em; color:var(--ink-950);
-    background:var(--red-500); padding:11px 20px;
-    border:1px solid var(--red-500);
+    letter-spacing:0.08em; color:var(--white);
+    background:var(--red-700); padding:11px 20px;
+    border:1px solid var(--red-700); font-weight:600;
     transition:background .2s ease, color .2s ease, transform .2s ease;
     white-space:nowrap;
   }
@@ -256,20 +259,21 @@
   .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
   .btn-primary{
     font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
-    background:var(--red-500); color:var(--ink-950); padding:16px 26px;
-    border:1px solid var(--red-500);
+    background:var(--red-700); color:var(--white); padding:16px 26px;
+    border:1px solid var(--red-700); font-weight:600;
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
-  .btn-primary:hover{background:var(--red-700); color:var(--white); transform:translateY(-1px);}
+  .btn-primary:hover{background:var(--red-900); color:var(--white); transform:translateY(-1px);}
 
+  /* Stabilní velikost zabraňující posunu CLS */
   .cube-stage{
     height:420px; 
-    min-height:420px;
+    width:100%;
     display:flex; 
     align-items:center; 
     justify-content:center;
     perspective:900px;
-    contain: layout style;
+    contain: layout size style;
   }
   .cube{
     width:180px; height:180px; position:relative;
@@ -279,10 +283,10 @@
   .cube .face{
     position:absolute; width:180px; height:180px;
     border:1px solid var(--red-500);
-    background:rgba(122,14,18,0.16);
+    background:rgba(122,14,18,0.22);
   }
   .cube .face.dots{
-    background-image:radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-image:radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
     background-size:18px 18px;
     background-position:center;
   }
@@ -302,7 +306,7 @@
   }
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr;}
-    .cube-stage{height:280px; min-height:280px;}
+    .cube-stage{height:280px;}
     .cube, .cube .face{width:130px; height:130px;}
     .face.front{transform:translateZ(65px);}
     .face.back{transform:translateZ(-65px) rotateY(180deg);}
@@ -315,7 +319,7 @@
   .sec-head{max-width:640px; margin-bottom:52px;}
   .sec-head h2{font-size:clamp(30px,4vw,46px); margin-top:14px;}
   .sec-head p{color:var(--steel-500); margin-top:14px; font-size:15.5px; max-width:520px;}
-  section.on-light .sec-head p{color:#44413B;}
+  section.on-light .sec-head p{color:var(--steel-500);}
 
   .services{padding:100px 0; background:var(--paper-050);}
   .service-grid{
@@ -328,7 +332,7 @@
     transition:background .25s ease;
   }
   .service-card:hover{background:var(--white);}
-  .service-card .num{font-family:var(--mono); font-size:12px; color:var(--red-500);}
+  .service-card .num{font-family:var(--mono); font-size:12px; color:var(--red-dark); font-weight:600;}
   .service-card h3{
     font-size:23px; margin-top:26px; text-transform:none; font-weight:700; letter-spacing:0;
     font-family:var(--body);
@@ -369,6 +373,7 @@
     letter-spacing: 0.08em;
     margin-bottom: 12px;
     display: block;
+    font-weight: 600;
   }
   .project-card h3 {
     font-family: var(--display);
@@ -401,7 +406,7 @@
     display:grid; grid-template-columns:90px 1fr 1.2fr; gap:24px;
     padding:26px 0; border-bottom:var(--edge); align-items:baseline;
   }
-  .step .step-num{font-family:var(--mono); font-size:14px; color:var(--red-500);}
+  .step .step-num{font-family:var(--mono); font-size:14px; color:var(--red-500); font-weight:600;}
   .step h3{
     font-family:var(--display); font-weight:700; text-transform:uppercase;
     font-size:22px; letter-spacing:0;
@@ -420,13 +425,13 @@
   .spec-panel::before,.spec-panel::after,
   .spec-panel .c2::before,.spec-panel .c2::after{
     content:""; position:absolute; width:14px; height:14px;
-    border:2px solid var(--red-500);
+    border:2px solid var(--red-dark);
   }
   .spec-panel::before{ top:-2px; left:-2px; border-right:none; border-bottom:none; }
   .spec-panel::after{ top:-2px; right:-2px; border-left:none; border-bottom:none; }
   .spec-panel .c2::before{ bottom:-2px; left:-2px; border-right:none; border-top:none; }
   .spec-panel .c2::after{ bottom:-2px; right:-2px; border-left:none; border-top:none; }
-  .spec-title{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; color:var(--red-500); text-transform:uppercase; margin-bottom:18px;}
+  .spec-title{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; color:var(--red-dark); font-weight:600; text-transform:uppercase; margin-bottom:18px;}
   .spec-row{
     display:flex; justify-content:space-between; gap:16px;
     padding:14px 0; border-bottom:1px dashed rgba(11,11,12,0.18);
@@ -434,7 +439,7 @@
   }
   .spec-row:last-child{border-bottom:none;}
   .spec-row .k{color:var(--steel-500);}
-  .spec-row .v{text-align:right; font-weight:500;}
+  .spec-row .v{text-align:right; font-weight:600;}
 
   @media (max-width: 860px) {
     .spec { padding: 60px 0; }
@@ -458,7 +463,8 @@
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #C21A20;
+    color: #A31217;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -468,7 +474,7 @@
     content: "";
     width: 18px;
     height: 1px;
-    background: #C21A20;
+    background: #A31217;
     display: inline-block;
   }
   .custom-sec-head {
@@ -488,8 +494,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: rgba(11, 11, 12, 0.15);
-    border: 1px solid rgba(11, 11, 12, 0.12);
+    background: rgba(11, 11, 12, 0.18);
+    border: 1px solid rgba(11, 11, 12, 0.18);
   }
   @media (max-width: 760px) {
     .custom-quote-grid { grid-template-columns: 1fr; }
@@ -511,7 +517,8 @@
     margin-top: 22px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: #9C1319;
+    color: #7A0E12;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
@@ -521,7 +528,7 @@
   .contact-info p.lead{color:var(--steel-300); margin-top:14px; font-size:15.5px; max-width:400px;}
   .contact-list{margin-top:36px; display:flex; flex-direction:column; gap:16px;}
   .contact-list .row{display:flex; gap:14px; font-family:var(--mono); font-size:13.5px;}
-  .contact-list .k{color:var(--steel-500); min-width:78px;}
+  .contact-list .k{color:var(--steel-300); min-width:78px;}
   .contact-list .v a:hover{color:var(--red-500);}
   .social-links a{color:var(--white); transition:color .2s ease;}
   .social-links a:hover{color:var(--red-500);}
@@ -533,18 +540,18 @@
     color:var(--steel-300); margin-bottom:8px; display:block;
   }
   input, textarea, select{
-    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.25);
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.3);
     color:var(--white); font-family:var(--body); font-size:15px; padding:10px 2px;
     transition:border-color .2s ease;
   }
   select option{color:#000; background:#FFF;}
-  input::placeholder, textarea::placeholder{color:var(--steel-500);}
+  input::placeholder, textarea::placeholder{color:var(--steel-300); opacity:0.7;}
   input:focus, textarea:focus, select:focus{border-color:var(--red-500); outline:none;}
   textarea{resize:vertical; min-height:96px;}
   .submit-btn{
     margin-top:8px; align-self:flex-start;
     font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
-    background:var(--red-500); color:var(--ink-950); padding:16px 30px; border:1px solid var(--red-500);
+    background:var(--red-700); color:var(--white); padding:16px 30px; border:1px solid var(--red-700);
     cursor:pointer; font-weight:600; transition:background .2s ease, color .2s ease;
   }
   .submit-btn:hover{background:transparent; color:var(--white);}
@@ -558,7 +565,7 @@
   footer{background:var(--ink-950); border-top:var(--edge); padding:40px 0;}
   .foot-wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
   .foot-wrap .brand-word .name{font-size:16px;}
-  footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-500); letter-spacing:0.04em;}
+  footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-300); letter-spacing:0.04em;}
   footer nav.links{gap:24px;}
 
   .cookie-banner {
@@ -594,9 +601,9 @@
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    background: var(--red-500);
-    color: var(--ink-950);
-    border: 1px solid var(--red-500);
+    background: var(--red-700);
+    color: var(--white);
+    border: 1px solid var(--red-700);
     padding: 8px 16px;
     cursor: pointer;
     font-weight: 600;
@@ -631,8 +638,8 @@
     visibility: visible;
   }
   .back-to-top:hover {
-    background: var(--red-500);
-    color: var(--ink-950);
+    background: var(--red-700);
+    color: var(--white);
     transform: translateY(-3px);
   }
   .back-to-top svg {
@@ -868,7 +875,7 @@
       <div>
         <div class="eyebrow" data-lang-cs="Technické parametry" data-lang-en="Technical Details">Technické parametry</div>
         <h2 style="font-size:clamp(28px,3.4vw,40px); margin-top:14px;" data-lang-cs="Spec sheet" data-lang-en="Spec Sheet">Spec sheet</h2>
-        <p style="color:#44413B; margin-top:14px; font-size:15px;" data-lang-cs="Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu." data-lang-en="Standard studio pipeline — exact setups are always customized per project.">Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu.</p>
+        <p style="color:var(--steel-500); margin-top:14px; font-size:15px;" data-lang-cs="Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu." data-lang-en="Standard studio pipeline — exact setups are always customized per project.">Standardní technické zázemí studia — konkrétní nastavení vždy přizpůsobíme projektu.</p>
       </div>
       <div class="spec-panel">
         <div class="spec-title">// Render pipeline</div>
@@ -916,7 +923,7 @@
       <div class="contact-info">
         <div class="eyebrow" data-lang-cs="Poptávka" data-lang-en="Inquiries">Poptávka</div>
         <h2 style="font-size:clamp(30px,4vw,46px); margin-top:14px;" data-lang-cs="Probereme<br>váš projekt." data-lang-en="Let's talk about<br>your project.">Probereme<br>váš projekt.</h2>
-        <p class="lead" data-lang-cs="Napište pár vět o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny." data-lang-en="Send a few lines about what you need and we will respond within two business days with an estimate.">Napište pár vět o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny.</p>
+        <p class="lead" data-lang-cs="Napište pár věta o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny." data-lang-en="Send a few lines about what you need and we will respond within two business days with an estimate.">Napište pár věta o tom, co potřebujete, a ozveme se do dvou pracovních dnů s návrhem rozsahu a ceny.</p>
         <div class="contact-list">
           <div class="row"><span class="k">E-mail</span><span class="v"><a href="mailto:info&#64;polygonbeater&#46;eu">info&#64;polygonbeater&#46;eu</a></span></div>
           <div class="row"><span class="k" data-lang-cs="Telefon" data-lang-en="Phone">Telefon</span><span class="v"><a href="tel:+420704062297">+420 704 062 297</a></span></div>
@@ -1118,5 +1125,3 @@
 
 </body>
 </html>
-
-

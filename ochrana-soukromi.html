@@ -26,34 +26,35 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://polygonbeater.eu/ochrana-soukromi.html">
 
-<!-- Asynchronní načítání písem pro maximální Výkon -->
+<!-- Asynchronní a optimalizované načítání písem -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 </noscript>
 
 <style>
   :root{
     --red-900:#7A0E12;
     --red-700:#B7151B;
-    --red-500:#E53935;
+    --red-500:#FF4D4D;
+    --red-dark:#A31217;
     --ink-950:#0B0B0C;
     --ink-800:#17171A;
     --ink-700:#232326;
     --paper-050:#F3F1EC;
     --paper-100:#E9E4D9;
-    --steel-500:#524F49;
-    --steel-300:#D5D2CA;
+    --steel-500:#3B3934;
+    --steel-300:#E2DFD7;
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --edge: 1px solid rgba(255,255,255,0.15);
+    --edge: 1px solid rgba(255,255,255,0.18);
     --edge-dark: 1px solid rgba(11,11,12,0.18);
   }
 
@@ -77,11 +78,12 @@
     text-transform:uppercase;
     color:var(--red-500);
     display:flex; align-items:center; gap:10px;
+    font-weight:600;
   }
   .eyebrow::before{
     content:"";
     width:18px; height:1px;
-    background:var(--red-500);
+    background:currentColor;
     display:inline-block;
   }
 
@@ -95,7 +97,7 @@
 
   header{
     position:sticky; top:0; z-index:100;
-    background:rgba(11,11,12,0.92);
+    background:rgba(11,11,12,0.94);
     backdrop-filter:blur(10px);
     border-bottom:var(--edge);
   }
@@ -117,7 +119,7 @@
   }
   .brand-word .sub{
     font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
-    color:var(--red-500); text-transform:uppercase;
+    color:var(--red-500); text-transform:uppercase; font-weight:600;
   }
 
   .nav-right {
@@ -135,7 +137,7 @@
     align-items: center;
     background: var(--ink-800);
     padding: 6px 10px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 4px;
   }
   .lang-btn {
@@ -146,7 +148,7 @@
     font-family: var(--mono);
     font-size: 12px;
     font-weight: 600;
-    opacity: 0.75;
+    opacity: 0.85;
     transition: opacity .2s ease;
   }
   .lang-btn.active, .lang-btn:hover {
@@ -156,7 +158,7 @@
 
   .back-link{
     font-family:var(--mono); font-size:12px; text-transform:uppercase;
-    color:var(--steel-300); transition:color .2s ease;
+    color:var(--steel-300); transition:color .2s ease; font-weight:600;
   }
   .back-link:hover{color:var(--white);}
 
@@ -174,11 +176,11 @@
     font-size:24px; font-family:var(--body); font-weight:700;
     text-transform:none; margin-bottom:12px; color:var(--ink-950);
   }
-  .privacy-block p, .privacy-block ul{ color:#33312C; font-size:15.5px; margin-bottom:12px; }
+  .privacy-block p, .privacy-block ul{ color:var(--steel-500); font-size:15.5px; margin-bottom:12px; }
   .privacy-block ul{ padding-left:20px; list-style-type:disc; }
   .privacy-block li{ margin-bottom:6px; }
-  a.inline-link{ color:var(--red-700); text-decoration:underline; font-weight:500; }
-  a.inline-link:hover{ color:var(--red-500); }
+  a.inline-link{ color:var(--red-dark); text-decoration:underline; font-weight:600; }
+  a.inline-link:hover{ color:var(--red-700); }
 
   footer{background:var(--ink-950); color:var(--white); border-top:var(--edge); padding:40px 0;}
   .foot-wrap{
@@ -228,9 +230,9 @@
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    background: var(--red-500);
-    color: var(--ink-950);
-    border: 1px solid var(--red-500);
+    background: var(--red-700);
+    color: var(--white);
+    border: 1px solid var(--red-700);
     padding: 8px 16px;
     cursor: pointer;
     font-weight: 600;
@@ -265,8 +267,8 @@
     visibility: visible;
   }
   .back-to-top:hover {
-    background: var(--red-500);
-    color: var(--ink-950);
+    background: var(--red-700);
+    color: var(--white);
     transform: translateY(-3px);
   }
   .back-to-top svg {
