@@ -19,6 +19,7 @@ Official web repository for **Polygon Beater**, a 3D graphic studio specializing
     .
     ├── index.html            # Main studio landing page
     ├── ochrana-soukromi.html # Privacy Policy & GDPR compliance page
+    ├── 404.html              # Custom 404 error page
     ├── sitemap.xml           # XML Sitemap for search crawlers
     ├── robots.txt            # Search engine directives
     └── Logo.svg              # Studio vector logo
