@@ -57,6 +57,9 @@
 }
 </script>
 
+<!-- Preload kritického písma pro okamžitý render LCP bez zpoždění -->
+<link rel="preload" href="https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1_PZJEZ6Y22sP92_wV2j88d0x6sE78.woff2" as="font" type="font/woff2" crossorigin>
+
 <!-- Asynchronní načítání písem (odstraňuje blokování vykreslování) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,10 +251,12 @@
     align-items:start;
   }
   .hero h1{
+    font-family:var(--display);
     font-size:clamp(44px, 6vw, 84px);
     margin:18px 0 24px;
     line-height:0.94;
     min-height:2.7em;
+    contain:layout;
   }
   .hero h1 em{
     font-style:normal;
@@ -311,7 +316,7 @@
   }
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr; gap:24px;}
-    .hero h1{min-height:120px;}
+    .hero h1{min-height:145px;}
     .cube-stage{height:280px; aspect-ratio:1/1; contain:strict;}
     .cube, .cube .face{width:130px; height:130px;}
     .face.front{transform:translateZ(65px);}
@@ -882,7 +887,7 @@
         <div class="step">
           <span class="step-num">06 /06</span>
           <h3 data-lang-cs="Dodání" data-lang-en="Delivery">Dodání</h3>
-          <p data-lang-cs="Finální soubory ve smluvených formáth a barevném profilu." data-lang-en="Final assets delivered in agreed formats and color profiles.">Finální soubory ve smluvených formátech a barevném profilu.</p>
+          <p data-lang-cs="Finální soubory ve smluvených formátech a barevném profilu." data-lang-en="Final assets delivered in agreed formats and color profiles.">Finální soubory ve smluvených formátech a barevném profilu.</p>
         </div>
       </div>
     </div>
@@ -1014,7 +1019,6 @@
       <a href="#postup" data-lang-cs="Postup" data-lang-en="Process">Postup</a>
       <a href="#specifikace" data-lang-cs="Specifikace" data-lang-en="Specs">Specifikace</a>
       <a href="#reference-klientu" data-lang-cs="Reference" data-lang-en="Reviews">Reference</a>
-      <a href="#kontakt" data-lang-cs="Kontakt" data-lang-en="Contact">Kontakt</a>
     </nav>
     <span class="copy">© <span id="year"></span> Polygon Beater 3D Graphic Studio</span>
   </div>
