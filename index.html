@@ -70,15 +70,15 @@
   :root{
     --red-900:#7A0E12;
     --red-700:#B7151B;
-    --red-500:#FF4D4D; /* Jasná červená pro tmavá pozadí (WCAG AA kontrast > 6:1) */
-    --red-dark:#A31217; /* Tmavá červená pro světlé podklady */
+    --red-500:#FF4D4D;
+    --red-dark:#A31217;
     --ink-950:#0B0B0C;
     --ink-800:#17171A;
     --ink-700:#232326;
     --paper-050:#F3F1EC;
     --paper-100:#E9E4D9;
-    --steel-500:#3B3934; /* Tmavá šedá pro světlé pozadí (kontrast > 9:1) */
-    --steel-300:#E2DFD7; /* Světlá šedá pro tmavé pozadí (kontrast > 12:1) */
+    --steel-500:#3B3934;
+    --steel-300:#E2DFD7;
     --white:#FFFFFF;
 
     --display: 'Big Shoulders Display', sans-serif;
@@ -114,7 +114,7 @@
     display:flex; align-items:center; gap:10px;
     font-weight:600;
   }
-  .on-light .eyebrow{ color:var(--red-dark); }
+  .on-light .eyebrow, .spec .eyebrow{ color:var(--red-dark); }
   .eyebrow::before{
     content:"";
     width:18px; height:1px;
@@ -242,7 +242,7 @@
     display:grid;
     grid-template-columns:1.1fr 0.9fr;
     gap:40px;
-    align-items:center;
+    align-items:start; /* Zamezí skokovému přepočítávání středu a tím eliminuje CLS */
   }
   .hero h1{
     font-size:clamp(44px, 6vw, 84px);
@@ -265,7 +265,6 @@
   }
   .btn-primary:hover{background:var(--red-900); color:var(--white); transform:translateY(-1px);}
 
-  /* Stabilní velikost zabraňující posunu CLS */
   .cube-stage{
     height:420px; 
     width:100%;
@@ -273,7 +272,8 @@
     align-items:center; 
     justify-content:center;
     perspective:900px;
-    contain: layout size style;
+    contain:strict; /* Pevná izolace layoutu zabraňující posunům okolí */
+    flex-shrink:0;
   }
   .cube{
     width:180px; height:180px; position:relative;
@@ -319,8 +319,7 @@
   .sec-head{max-width:640px; margin-bottom:52px;}
   .sec-head h2{font-size:clamp(30px,4vw,46px); margin-top:14px;}
   .sec-head p{color:var(--steel-500); margin-top:14px; font-size:15.5px; max-width:520px;}
-  section.on-light .sec-head p{color:var(--steel-500);}
-
+  
   .services{padding:100px 0; background:var(--paper-050);}
   .service-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
@@ -346,6 +345,9 @@
     color: var(--white);
     border-top: var(--edge);
     border-bottom: var(--edge);
+  }
+  .projects .sec-head p {
+    color: var(--steel-300); /* Zajišťuje plný kontrast WCAG AA na tmavém pozadí */
   }
   .projects-grid {
     display: grid;
