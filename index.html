@@ -57,10 +57,14 @@
 }
 </script>
 
-<!-- Přímé a rychlé načtení písem bez zpoždění LCP -->
+<!-- Asynchronní načítání písem (odstraňuje blokování vykreslování) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+</noscript>
 
 <style>
   :root{
@@ -99,7 +103,7 @@
   ul{list-style:none;}
   section{
     position:relative;
-    contain:layout style; /* Izoluje změny velikosti uvnitř sekce, zabraňuje skokovému přelévání CLS */
+    contain:layout style;
   }
   .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
@@ -141,7 +145,7 @@
     border-bottom:var(--edge);
   }
   .nav{
-    display:flex; align-items:center; justify-space-between;
+    display:flex; align-items:center; justify-content:space-between;
     height:76px;
   }
   .brand{display:flex; align-items:center; gap:12px;}
@@ -579,6 +583,7 @@
   footer .copy{font-family:var(--mono); font-size:11.5px; color:var(--steel-300); letter-spacing:0.04em;}
   footer nav.links{gap:24px;}
 
+  /* Cookie lišta s izolací proti CLS skokům */
   .cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -592,6 +597,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    contain: layout style;
   }
   .cookie-banner p {
     font-family: var(--body);

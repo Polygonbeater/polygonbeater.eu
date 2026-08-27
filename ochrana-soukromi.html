@@ -26,10 +26,14 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://polygonbeater.eu/ochrana-soukromi.html">
 
-<!-- Přímé načtení písem bez zpoždění LCP -->
+<!-- Asynchronní načítání písem (odstraňuje blokování vykreslování na mobilu) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+</noscript>
 
 <style>
   :root{
@@ -207,6 +211,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    contain: layout style;
   }
   .cookie-banner p {
     font-family: var(--body);
