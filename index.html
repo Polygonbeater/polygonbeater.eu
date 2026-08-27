@@ -57,14 +57,10 @@
 }
 </script>
 
-<!-- Asynchronní a optimalizované načítání písem -->
+<!-- Přímé a rychlé načtení písem bez zpoždění LCP -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
-</noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 
 <style>
   :root{
@@ -101,7 +97,10 @@
   img{display:block; max-width:100%;}
   a{color:inherit; text-decoration:none;}
   ul{list-style:none;}
-  section{position:relative;}
+  section{
+    position:relative;
+    contain:layout style; /* Izoluje změny velikosti uvnitř sekce, zabraňuje skokovému přelévání CLS */
+  }
   .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
 
@@ -142,7 +141,7 @@
     border-bottom:var(--edge);
   }
   .nav{
-    display:flex; align-items:center; justify-content:space-between;
+    display:flex; align-items:center; justify-space-between;
     height:76px;
   }
   .brand{display:flex; align-items:center; gap:12px;}
@@ -242,11 +241,12 @@
     display:grid;
     grid-template-columns:1.1fr 0.9fr;
     gap:40px;
-    align-items:start; /* Zamezí skokovému přepočítávání středu a tím eliminuje CLS */
+    align-items:start;
   }
   .hero h1{
     font-size:clamp(44px, 6vw, 84px);
     margin:18px 0 24px;
+    min-height:1.1em;
   }
   .hero h1 em{
     font-style:normal;
@@ -272,7 +272,7 @@
     align-items:center; 
     justify-content:center;
     perspective:900px;
-    contain:strict; /* Pevná izolace layoutu zabraňující posunům okolí */
+    contain:strict;
     flex-shrink:0;
   }
   .cube{
@@ -305,8 +305,8 @@
     html{scroll-behavior:auto;}
   }
   @media (max-width:900px){
-    .hero .wrap{grid-template-columns:1fr;}
-    .cube-stage{height:280px;}
+    .hero .wrap{grid-template-columns:1fr; gap:24px;}
+    .cube-stage{height:280px; aspect-ratio:1/1; contain:strict;}
     .cube, .cube .face{width:130px; height:130px;}
     .face.front{transform:translateZ(65px);}
     .face.back{transform:translateZ(-65px) rotateY(180deg);}
@@ -316,8 +316,17 @@
     .face.bottom{transform:rotateX(-90deg) translateZ(65px);}
   }
 
-  .sec-head{max-width:640px; margin-bottom:52px;}
-  .sec-head h2{font-size:clamp(30px,4vw,46px); margin-top:14px;}
+  .sec-head{
+    max-width:640px;
+    margin-bottom:52px;
+    min-height:120px;
+    contain:layout;
+  }
+  .sec-head h2{
+    font-size:clamp(30px,4vw,46px);
+    margin-top:14px;
+    line-height:1;
+  }
   .sec-head p{color:var(--steel-500); margin-top:14px; font-size:15.5px; max-width:520px;}
   
   .services{padding:100px 0; background:var(--paper-050);}
@@ -347,7 +356,7 @@
     border-bottom: var(--edge);
   }
   .projects .sec-head p {
-    color: var(--steel-300); /* Zajišťuje plný kontrast WCAG AA na tmavém pozadí */
+    color: var(--steel-300);
   }
   .projects-grid {
     display: grid;
