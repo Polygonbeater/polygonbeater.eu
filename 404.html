@@ -21,6 +21,7 @@
     --red-500:#FF4D4D;
     --red-700:#B7151B;
     --ink-950:#0B0B0C;
+    --ink-800:#17171A;
     --steel-300:#E2DFD7;
     --white:#FFFFFF;
 
@@ -45,6 +46,7 @@
   header{
     border-bottom:var(--edge);
     padding:20px 32px;
+    display:flex; justify-content:space-between; align-items:center;
   }
   .brand{display:flex; align-items:center; gap:12px;}
   .brand-mark{
@@ -59,6 +61,34 @@
   .brand-word .sub{
     font-family:var(--mono); font-size:9.5px; letter-spacing:0.16em;
     color:var(--red-500); text-transform:uppercase; font-weight:600;
+  }
+
+  .lang-switcher {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--steel-300);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: var(--ink-800);
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 4px;
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    color: var(--steel-300);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.85;
+    transition: opacity .2s ease;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    color: var(--white);
+    opacity: 1;
   }
 
   main{
@@ -100,14 +130,19 @@
       <span class="sub">3D Graphic Studio</span>
     </span>
   </a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-cs" onclick="switchLanguage('cs')">CZ</button>
+    <span>|</span>
+    <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">EN</button>
+  </div>
 </header>
 
 <main>
   <div class="content">
     <div class="num">404</div>
-    <h1>Stránka nenalezena</h1>
-    <p>Požadovaná adresa na tomto serveru neexistuje nebo byla přesunuta.</p>
-    <a href="/" class="btn-primary">← Zpět na hlavní stranu</a>
+    <h1 data-lang-cs="Stránka nenalezena" data-lang-en="Page Not Found">Stránka nenalezena</h1>
+    <p data-lang-cs="Požadovaná adresa na tomto serveru neexistuje nebo byla přesunuta." data-lang-en="The requested URL on this server was not found or has been moved.">Požadovaná adresa na tomto serveru neexistuje nebo byla přesunuta.</p>
+    <a href="/" class="btn-primary" data-lang-cs="← Zpět na hlavní stranu" data-lang-en="← Back to Home">← Zpět na hlavní stranu</a>
   </div>
 </main>
 
@@ -117,6 +152,32 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  function switchLanguage(lang) {
+    document.querySelectorAll('[data-lang-cs]').forEach(el => {
+      const text = el.getAttribute(`data-lang-${lang}`);
+      if (text) el.innerHTML = text;
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`btn-${lang}`).classList.add('active');
+    document.documentElement.lang = lang;
+    localStorage.setItem('pb_user_lang', lang);
+  }
+
+  (function initLanguage() {
+    const savedLang = localStorage.getItem('pb_user_lang');
+    if (savedLang) {
+      switchLanguage(savedLang);
+    } else {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.startsWith('cs') || userLang.startsWith('sk')) {
+        switchLanguage('cs');
+      } else {
+        switchLanguage('en');
+      }
+    }
+  })();
 </script>
 
 </body>
